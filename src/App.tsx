@@ -1,43 +1,30 @@
+import { Button, TextField } from "@material-ui/core";
 import react, { useState } from "react";
-import "./App.css";
+import "./App.scss";
 
 export const App = () => {
-  const [citySearch, setCitySearch] = useState("Montreal");
-  const [cities, setCities] = useState([
-    "Ottawa",
-    "St.John's",
-    "Halifax",
-    "Fredricton",
-    "Charlottetown",
-    "Quebec City",
-    "Toronto",
-    "Winnipeg",
-    "Regina",
-    "Edmonton",
-    "Victoria",
-    "Iqaluit",
-    "Yellowknife",
-    "Whitehorse",
-  ]);
+  const [citySearch, setCitySearch] = useState("");
+  const [cities, setCities] = useState<String[]>([]);
+  const addCity = () => {
+    setCities([citySearch, ...cities]);
+    setCitySearch("");
+  };
 
   return (
     <div className="container">
-      <div className="weather__wrap">
-        <h1 className="heading">Weather Forecast App</h1>
+      <div className="weather">
+        <h1 className="weather__heading">Weather Forecast App</h1>
         <div className="weather__inputs">
-          <label className="weather__label">Location</label>
-          <input
+          <h3 className="weather__label">Choose City</h3>
+          <TextField
             className="weather__input"
-            type="text"
+            label="City"
             value={citySearch}
             onChange={(event) => setCitySearch(event.target.value)}
           />
-          <button
-            className="weather__button"
-            onClick={() => setCities([citySearch, ...cities])}
-          >
+          <Button className="weather__button" onClick={addCity}>
             Search
-          </button>
+          </Button>
         </div>
       </div>
 
