@@ -1,30 +1,39 @@
-import { Button, TextField } from "@material-ui/core";
 import React from "react";
 import { useState } from "react";
+import { CityCoordinates } from "../../model/WeatherModel";
+import { getWeather } from "../../services/WeatherService";
 
 interface CitySearchProps {
-  onSearch: (search: string) => void;
+  onSubmit: (search: CityCoordinates) => void;
 }
 
-export const CitySearch: React.FC<CitySearchProps> = ({ onSearch }) => {
+export const CitySearch: React.FC<CitySearchProps> = ({ onSubmit }) => {
   const [citySearch, setCitySearch] = useState("");
 
-  const addCity = () => {
-    onSearch(citySearch);
-    setCitySearch("");
+  let addCity = async (term: string) => {
+    const city = await getWeather(term);
+
+    if (!city) {
+      alert(`${term} is not a valid city.`);
+    } else {
+      onSubmit(city);
+    }
   };
 
   return (
     <div className="citySearch">
-      <TextField
+      <input
         className="weather__input"
-        label="City"
         value={citySearch}
-        onChange={(event) => setCitySearch(event.target.value)}
+        onChange={(e) => setCitySearch(e.target.value)}
       />
-      <Button className="weather__button" onClick={addCity}>
+      <button
+        className="weather__button"
+        onClick={() => addCity(citySearch)}
+        disabled={!citySearch}
+      >
         Search
-      </Button>
+      </button>
     </div>
   );
 };

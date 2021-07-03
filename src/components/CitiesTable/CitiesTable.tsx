@@ -1,10 +1,17 @@
 import React from "react";
+import { CityCoordinates } from "../../model/WeatherModel";
 
 interface CitiesTableProps {
-  cities: string[];
+  cities: CityCoordinates[];
+  current: CityCoordinates | null;
+  onSelect: (city: CityCoordinates) => void;
 }
 
-export const CitiesTable: React.FC<CitiesTableProps> = ({ cities }) => {
+export const CitiesTable: React.FC<CitiesTableProps> = ({
+  cities,
+  current,
+  onSelect,
+}) => {
   return (
     <div className="cities__table">
       <table className="table">
@@ -14,11 +21,15 @@ export const CitiesTable: React.FC<CitiesTableProps> = ({ cities }) => {
           </tr>
         </thead>
         <tbody className="table__body">
-          {cities.map((city, index) => {
-            <tr key={index} className="table__body-row">
-              <td className="table__body-data">{city}</td>
-            </tr>;
-          })}
+          {cities.map((city, index) => (
+            <tr
+              className={current?.id === city.id ? "table__row" : ""}
+              onClick={() => onSelect(city)}
+              key={index}
+            >
+              <td className="table__body-data">{city.name}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
