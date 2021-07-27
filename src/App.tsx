@@ -3,6 +3,7 @@ import "./App.scss";
 import { CitiesTable } from "./components/CitiesTable/CitiesTable";
 import { CitySearch } from "./components/CitySearch/CitySearch";
 import { CityCoordinates } from "./model/WeatherModel";
+import { WeatherAnalysis } from "./components/WeatherAnalysis/WeatherAnalysis";
 
 export const App = () => {
   const [cities, setCities] = useState<CityCoordinates[]>([]);
@@ -15,7 +16,7 @@ export const App = () => {
   };
 
   return (
-    <div className="container container__top">
+    <div className="container">
       <div className="weather">
         <h1 className="weather__heading">Weather Forecast App</h1>
         <div className="weather__inputs">
@@ -24,12 +25,16 @@ export const App = () => {
         </div>
       </div>
 
-      <div className="container container__bottom">
+      <div className="container">
         <CitiesTable
           cities={cities}
           current={currentCity}
           onSelect={(city) => setCurrentCity(city)}
         />
+      </div>
+
+      <div className="container">
+        <WeatherAnalysis city={currentCity} />
       </div>
     </div>
   );

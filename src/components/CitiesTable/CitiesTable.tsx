@@ -1,5 +1,6 @@
 import React from "react";
 import { CityCoordinates } from "../../model/WeatherModel";
+import "./CitiesTable.scss";
 
 interface CitiesTableProps {
   cities: CityCoordinates[];
