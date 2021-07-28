@@ -2,14 +2,14 @@ import react, { useState } from "react";
 import "./App.scss";
 import { CitiesTable } from "./components/CitiesTable/CitiesTable";
 import { CitySearch } from "./components/CitySearch/CitySearch";
-import { CityCoordinates } from "./model/WeatherModel";
+import { City } from "./model/WeatherModel";
 import { WeatherAnalysis } from "./components/WeatherAnalysis/WeatherAnalysis";
 
 export const App = () => {
-  const [cities, setCities] = useState<CityCoordinates[]>([]);
-  const [currentCity, setCurrentCity] = useState<CityCoordinates | null>(null);
+  const [cities, setCities] = useState<City[]>([]);
+  const [currentCity, setCurrentCity] = useState<City | null>(null);
 
-  const addCity = (city: CityCoordinates) => {
+  const addCity = (city: City) => {
     if (!cities.find((item) => item.name === city.name)) {
       setCities([city, ...cities]);
     }

@@ -1,11 +1,11 @@
 import React from "react";
-import { CityCoordinates } from "../../model/WeatherModel";
+import { City } from "../../model/WeatherModel";
 import "./CitiesTable.scss";
 
 interface CitiesTableProps {
-  cities: CityCoordinates[];
-  current: CityCoordinates | null;
-  onSelect: (city: CityCoordinates) => void;
+  cities: City[];
+  current: City | null;
+  onSelect: (city: City) => void;
 }
 
 export const CitiesTable: React.FC<CitiesTableProps> = ({

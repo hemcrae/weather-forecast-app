@@ -1,12 +1,17 @@
 export interface Coordinates {
-  longitute: number;
-  latitude: number;
+  lon: number;
+  lat: number;
 }
 
-export interface CityCoordinates {
-  coordinates: Coordinates;
+export interface City {
+  coord: Coordinates;
   id: number;
   name: string;
+  country: string;
+  population: number;
+  sunrise: number;
+  sunset: number;
+  timezone: number;
 }
 
 export interface WeatherConditions {
@@ -29,4 +34,12 @@ export interface Weather {
   weather: WeatherConditions[];
   main: MainWeatherData;
   dt: number;
+}
+
+export interface Forecast {
+  city: City;
+  cnt: number;
+  cod: string;
+  message: number;
+  list: Weather[];
 }

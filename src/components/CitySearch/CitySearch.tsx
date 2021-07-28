@@ -1,10 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import { CityCoordinates } from "../../model/WeatherModel";
+import { City } from "../../model/WeatherModel";
 import { getWeather } from "../../services/WeatherService";
 
 interface CitySearchProps {
-  onSubmit: (search: CityCoordinates) => void;
+  onSubmit: (search: City) => void;
 }
 
 export const CitySearch: React.FC<CitySearchProps> = ({ onSubmit }) => {
