@@ -1,5 +1,5 @@
-@use './partials/variables.scss' as *;
-@use './partials/mixins.scss' as *;
+@use './abstract/variables.scss' as *;
+@use './abstract/mixins.scss' as *;
 
 .container {
   width: 100%;

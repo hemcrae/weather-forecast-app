@@ -8,7 +8,7 @@ if (key === undefined) {
   throw new Error("No weather API Key defined");
 }
 
-const keyQuery = `appid=${key}`;
+const keyQuery = `appid=${key}&units=metric`;
 const APIUrl = "http://api.openweathermap.org/data/2.5";
 
 export async function getWeather(item: string) {
