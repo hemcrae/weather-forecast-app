@@ -1,13 +1,73 @@
 @use './variables.scss' as *;
 
+@mixin tablet {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}
+
 @mixin heading {
   font-size: 2rem;
   font-weight: 400;
   font-family: $noto-sans;
+  color: $heading-color;
+
+  @include tablet {
+    font-size: 3rem;
+  }
+
+  @include desktop {
+    font-size: 4rem;
+  }
+}
+
+@mixin small-heading {
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-family: $roboto;
+  color: $label-color;
+
+  @include tablet {
+    font-size: 2em;
+  }
+
+  @include desktop {
+    font-size: 2.5rem;
+  }
 }
 
 @mixin label {
   font-size: 1rem;
   font-weight: 400;
-  font-family: $noto-sans;
+  font-family: $roboto;
+  color: $text-color;
+
+  @include tablet {
+    font-size: 1.5em;
+  }
+
+  @include desktop {
+    font-size: 2rem;
+  }
+}
+
+@mixin text {
+  font-size: 0.75rem;
+  font-weight: 300;
+  font-family: $roboto;
+  color: $text-color;
+
+  @include tablet {
+    font-size: 1em;
+  }
+
+  @include desktop {
+    font-size: 1.25rem;
+  }
 }

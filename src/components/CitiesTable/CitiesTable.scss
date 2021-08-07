@@ -1,4 +1,25 @@
+@use '../../abstract/mixins.scss' as *;
+@use '../../abstract/variables.scss' as *;
+
 .cities__table {
   display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 1rem;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__heading {
+    @include heading;
+    padding: 1rem 0;
+  }
+
+  &__body-data {
+    @include small-heading;
+  }
 }

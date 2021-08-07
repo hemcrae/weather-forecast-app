@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./WeatherAnalysis.scss";
 import { City, Forecast, Weather } from "../../model/WeatherModel";
 import { fetchForecast, fetchWeather } from "../../services/WeatherService";
 import { WeatherEntry } from "../WeatherEntry/WeatherEntry";
@@ -35,15 +36,16 @@ export const WeatherAnalysis: React.FC<WeatherAnalysisProps> = ({ city }) => {
 
   return (
     <div className="analysis">
-      <div className="analysis__wrap-top">
-        <h2 className="analysis__name">{city.name}</h2>
+      <div className="current">
+        <h2 className="current__name">{city.name}</h2>
+        <h3 className="current__heading">Current Weather</h3>
         <WeatherEntry weather={weather} />
       </div>
-      <div className="analysis__wrap-bottom">
-        <h2 className="analysis__forecast">Forecast</h2>
-        <ol className="analysis__list">
+      <div className="forecast">
+        <h3 className="forecast__heading">Forecast</h3>
+        <ol className="forecast__list">
           {forecast?.list.map((timePoint) => (
-            <li className="analysis__list-item" key={timePoint.dt}>
+            <li className="forecast__list-item" key={timePoint.dt}>
               <WeatherEntry weather={timePoint} />
             </li>
           ))}

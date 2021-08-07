@@ -1,0 +1,42 @@
+@use '../../abstract/variables.scss' as *;
+@use '../../abstract/mixins.scss' as *;
+
+.search {
+  display: inline-flex;
+  position: relative;
+  padding: 1rem 0;
+
+  &__input {
+    height: 50px;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    padding: 0 1rem;
+    font-size: 1rem;
+
+    @include tablet {
+      width: 500px;
+    }
+
+    @include desktop {
+      width: 750px;
+    }
+
+    &:focus {
+      outline: $outline-color;
+      box-shadow: 0 0 5px $cta-color;
+    }
+  }
+
+  &__button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    outline: none;
+    color: $cta-color;
+    border: none;
+    padding: 0.5rem;
+  }
+}

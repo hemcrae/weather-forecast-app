@@ -1,0 +1,41 @@
+@use '../../abstract/mixins.scss' as *;
+@use '../../abstract/variables.scss' as *;
+
+.entry {
+  align-items: center;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1rem 0;
+  padding: 1rem;
+
+  &__wrap-bottom {
+    display: flex;
+  }
+
+  &__wrap {
+    flex-direction: column;
+    padding-right: 1rem;
+  }
+
+  &__time {
+    @include label;
+    padding-bottom: 1rem;
+  }
+
+  &__current-temp,
+  &__temp-range,
+  &__humidity,
+  &__feels {
+    @include text;
+  }
+
+  &__conditions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include text;
+  }
+}

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { FormEvent, useCallback } from "react";
 import { useState } from "react";
 import { City } from "../../model/WeatherModel";
 import { getWeather } from "../../services/WeatherService";
+import "./CitySearch.scss";
+import SearchIcon from "@material-ui/icons/Search";
 
 interface CitySearchProps {
   onSubmit: (search: City) => void;
@@ -10,30 +12,32 @@ interface CitySearchProps {
 export const CitySearch: React.FC<CitySearchProps> = ({ onSubmit }) => {
   const [citySearch, setCitySearch] = useState("");
 
-  let addCity = async (term: string) => {
-    const city = await getWeather(term);
+  let addCity = useCallback(
+    async (e: FormEvent<HTMLFormElement>, term: string) => {
+      e.preventDefault();
+      const city = await getWeather(term);
 
-    if (!city) {
-      alert(`${term} is not a valid city.`);
-    } else {
-      onSubmit(city);
-    }
-  };
+      if (!city) {
+        alert(`${term} is not a valid city.`);
+      } else {
+        onSubmit(city);
+      }
+    },
+    [onSubmit]
+  );
 
   return (
-    <div className="citySearch">
+    <form className="search" onSubmit={(e) => addCity(e, citySearch)}>
       <input
-        className="weather__input"
+        className="search__input"
         value={citySearch}
         onChange={(e) => setCitySearch(e.target.value)}
+        placeholder="Search for city"
+        type="text"
       />
-      <button
-        className="weather__button"
-        onClick={() => addCity(citySearch)}
-        disabled={!citySearch}
-      >
-        Search
+      <button className="search__button" disabled={!citySearch} type="submit">
+        <SearchIcon />
       </button>
-    </div>
+    </form>
   );
 };

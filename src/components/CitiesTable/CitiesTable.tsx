@@ -1,6 +1,7 @@
 import React from "react";
 import { City } from "../../model/WeatherModel";
 import "./CitiesTable.scss";
+import "../../utils/scroll.utils";
 
 interface CitiesTableProps {
   cities: City[];
@@ -14,25 +15,18 @@ export const CitiesTable: React.FC<CitiesTableProps> = ({
   onSelect,
 }) => {
   return (
-    <div className="cities__table">
-      <table className="table">
-        <thead className="table__head">
-          <tr className="table__heading-row">
-            <th className="table__heading">Cities</th>
-          </tr>
-        </thead>
-        <tbody className="table__body">
-          {cities.map((city, index) => (
-            <tr
-              className={current?.id === city.id ? "table__row" : ""}
-              onClick={() => onSelect(city)}
-              key={index}
-            >
-              <td className="table__body-data">{city.name}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="cities">
+      <h2 className="table__heading">Cities</h2>
+      {cities.map((city, index) => (
+        <div
+          className={current?.id === city.id ? "table__row" : ""}
+          key={index}
+        >
+          <h3 className="table__body-data" onClick={() => onSelect(city)}>
+            {city.name}
+          </h3>
+        </div>
+      ))}
     </div>
   );
 };
