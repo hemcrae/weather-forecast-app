@@ -3,7 +3,8 @@ import "./App.scss";
 import { CitiesTable } from "./components/CitiesTable/CitiesTable";
 import { CitySearch } from "./components/CitySearch/CitySearch";
 import { City } from "./model/WeatherModel";
-import { WeatherAnalysis } from "./components/WeatherAnalysis/WeatherAnalysis";
+import { CurrentWeather } from "./components/CurrentWeather/CurrentWeather";
+import { ForecastAnalysis } from "./components/ForecastAnalysis/ForecastAnalysis";
 
 export const App = () => {
   const container = useRef<HTMLDivElement | null>(null);
@@ -34,12 +35,12 @@ export const App = () => {
 
   return (
     <div ref={container} className="container">
-      <div className="weather page-scroll" id="weather">
+      <div className="weather page-scroll">
         <h1 className="weather__heading">Weather Forecast</h1>
         <CitySearch onSubmit={addCity} />
       </div>
 
-      <div className="cities page-scroll" id="cities">
+      <div className="cities page-scroll">
         <CitiesTable
           cities={cities}
           current={currentCity}
@@ -47,8 +48,9 @@ export const App = () => {
         />
       </div>
 
-      <div className="analysis page-scroll" id="analysis">
-        <WeatherAnalysis city={currentCity} />
+      <div className="analysis page-scroll">
+        <CurrentWeather city={currentCity} />
+        <ForecastAnalysis city={currentCity} />
       </div>
     </div>
   );

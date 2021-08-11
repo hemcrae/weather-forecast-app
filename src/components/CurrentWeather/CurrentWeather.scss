@@ -1,0 +1,18 @@
+@use '../../abstract/mixins.scss' as *;
+
+.current {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+
+  &__heading {
+    @include small-heading;
+    padding: 2rem 0;
+  }
+}
+
+.name {
+  @include heading;
+}

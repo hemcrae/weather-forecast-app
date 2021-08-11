@@ -20,6 +20,11 @@
   }
 
   &__body-data {
+    cursor: pointer;
     @include small-heading;
+
+    &:hover {
+      color: $cta-color;
+    }
   }
 }

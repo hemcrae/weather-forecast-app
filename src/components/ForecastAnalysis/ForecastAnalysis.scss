@@ -1,0 +1,20 @@
+@use '../../abstract/mixins.scss' as *;
+
+.forecast {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__heading {
+    @include small-heading;
+  }
+
+  &__list {
+    list-style: none;
+  }
+
+  &__list-item {
+    width: 100%;
+  }
+}
