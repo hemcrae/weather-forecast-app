@@ -1,11 +1,6 @@
 @use '../../abstract/mixins.scss' as *;
 
 .forecast {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
   &__heading {
     @include small-heading;
   }
