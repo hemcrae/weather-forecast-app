@@ -1,30 +1,21 @@
-import React, { useEffect, useState, useRef } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./ForecastAnalysis.scss";
 import { City, Forecast } from "../../model/WeatherModel";
-import { fetchForecast } from "../../services/WeatherService";
 import { WeatherEntry } from "../WeatherEntry/WeatherEntry";
 import "swiper/swiper.scss";
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 interface ForecastProps {
   city: City | null;
+  forecast: Forecast | null;
 }
 
-export const ForecastAnalysis: React.FC<ForecastProps> = ({ city }) => {
-  const [forecast, setForecast] = useState<Forecast | undefined>();
-
-  useEffect(() => {
-    (async function () {
-      if (city) {
-        const [forecast] = await Promise.all([fetchForecast(city.id)]);
-        if (forecast) {
-          console.log(forecast);
-          setForecast(forecast);
-        }
-      }
-    })();
-  }, [city]);
-
+export const ForecastAnalysis: React.FC<ForecastProps> = ({
+  city,
+  forecast,
+}) => {
   if (!city || !forecast) {
     return null;
   }
@@ -33,21 +24,31 @@ export const ForecastAnalysis: React.FC<ForecastProps> = ({ city }) => {
     <>
       <div className="forecast">
         <h3 className="forecast__heading">Forecast</h3>
-        <Swiper
-          spaceBetween={50}
-          slidesPerView={3}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
-        >
-          {forecast?.list.map((timePoint) => (
-            <SwiperSlide
-              className="forecast__list-item"
-              key={`forecast-${timePoint.dt}`}
-            >
-              <WeatherEntry weather={timePoint} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        <div className="forecast__swiper">
+          <Swiper
+            navigation
+            pagination={{ clickable: true }}
+            scrollbar={{ draggable: true }}
+            breakpoints={{
+              320: {
+                slidesPerView: "auto",
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+              },
+            }}
+            onSlideChange={() => console.log("slide change")}
+            onSwiper={(swiper) => console.log(swiper)}
+          >
+            {forecast?.list.map((timePoint) => (
+              <SwiperSlide key={`forecast-${timePoint.dt}`}>
+                <WeatherEntry weather={timePoint} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </>
   );

@@ -16,13 +16,16 @@
   }
 
   &__wrap {
-    flex-direction: column;
-    padding-right: 1rem;
+    // flex-direction: column;
+  }
+
+  &__temp {
+    padding: 1rem;
   }
 
   &__time {
     @include label;
-    padding-bottom: 1rem;
+    padding: 1rem 0;
   }
 
   &__current-temp,
@@ -30,6 +33,9 @@
   &__humidity,
   &__feels {
     @include text;
+    overflow-x: scroll;
+    white-space: nowrap;
+    padding: 0.25rem;
   }
 
   &__conditions {
@@ -37,5 +43,7 @@
     justify-content: center;
     align-items: center;
     @include text;
+    text-transform: capitalize;
+    padding: 1rem;
   }
 }

@@ -19,18 +19,22 @@ export const WeatherEntry: React.FC<WeatherEntryProps> = ({ weather }) => {
       <div className="entry__wrap-bottom">
         <div className="entry__wrap">
           <div className="entry__temp">
-            <h2 className="entry__current-temp">{weather.main.temp}℃</h2>
+            <h2 className="entry__current-temp">Temp: {weather.main.temp}℃</h2>
             <h3 className="entry__temp-range">
-              {weather.main.temp_min}℃ / {weather.main.temp_max}℃
+              Min/Max: {weather.main.temp_min}℃/{weather.main.temp_max}℃
             </h3>
-            <h3 className="entry__humidity">{weather.main.humidity}%</h3>
-            <h3 className="entry__feels">{weather.main.feels_like}℃</h3>
+            <h3 className="entry__humidity">
+              Humidity: {weather.main.humidity}%
+            </h3>
+            <h3 className="entry__feels">
+              Feels like: {weather.main.feels_like}℃
+            </h3>
           </div>
         </div>
         {weather.weather.map((condition) => (
           <div className="entry__conditions" key={condition.id}>
             <img src={getIconUrl(condition.icon)} alt={condition.main} />
-            {condition.main} {condition.description}
+            {condition.description}
           </div>
         ))}
       </div>

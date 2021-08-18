@@ -32,6 +32,7 @@
   font-weight: 300;
   font-family: $roboto;
   color: $label-color;
+  padding: 2rem 0;
 
   @include tablet {
     font-size: 2em;

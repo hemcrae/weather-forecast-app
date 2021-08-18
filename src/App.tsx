@@ -1,15 +1,19 @@
-import react, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./App.scss";
 import { CitiesTable } from "./components/CitiesTable/CitiesTable";
 import { CitySearch } from "./components/CitySearch/CitySearch";
-import { City } from "./model/WeatherModel";
+import { City, Forecast, Weather } from "./model/WeatherModel";
 import { CurrentWeather } from "./components/CurrentWeather/CurrentWeather";
 import { ForecastAnalysis } from "./components/ForecastAnalysis/ForecastAnalysis";
+import { fetchForecast, fetchWeather } from "./services/WeatherService";
+import clouds from "./assets/clouds.mp4";
 
 export const App = () => {
   const container = useRef<HTMLDivElement | null>(null);
   const [cities, setCities] = useState<City[]>([]);
-  const [currentCity, setCurrentCity] = useState<City | null>(null);
+  const [city, setCity] = useState<City | null>(null);
+  const [weather, setWeather] = useState<Weather | null>(null);
+  const [forecast, setForecast] = useState<Forecast | null>(null);
 
   const scrollTo = useCallback((value: number) => {
     container.current?.scrollTo({ top: value, behavior: "smooth" });
@@ -27,11 +31,29 @@ export const App = () => {
 
   const onCitySelect = useCallback(
     (city: City) => {
-      setCurrentCity(city);
+      setCity(city);
       scrollTo(window.innerHeight * 2);
     },
     [scrollTo]
   );
+
+  useEffect(() => {
+    (async function () {
+      if (city) {
+        const [weather, forecastData] = await Promise.all([
+          fetchWeather(city.id),
+          fetchForecast(city.id),
+        ]);
+        if (weather) {
+          setWeather(weather);
+        }
+        if (forecastData) {
+          console.log(forecastData);
+          setForecast(forecastData);
+        }
+      }
+    })();
+  }, [city]);
 
   return (
     <div ref={container} className="container">
@@ -43,14 +65,22 @@ export const App = () => {
       <div className="cities page-scroll">
         <CitiesTable
           cities={cities}
-          current={currentCity}
+          current={city}
           onSelect={(city) => onCitySelect(city)}
         />
       </div>
 
-      <div className="analysis page-scroll">
-        <CurrentWeather city={currentCity} />
-        <ForecastAnalysis city={currentCity} />
+      <div className="current-analysis page-scroll">
+        <video className="current-video" loop autoPlay muted>
+          <source src={clouds} type="video/mp4" />
+        </video>
+        <div className="current-weather">
+          <CurrentWeather city={city} weather={weather} />
+        </div>
+      </div>
+
+      <div className="forecast-weather page-scroll">
+        <ForecastAnalysis forecast={forecast} city={city} />
       </div>
     </div>
   );

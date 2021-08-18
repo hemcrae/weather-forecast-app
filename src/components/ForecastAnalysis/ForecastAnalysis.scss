@@ -1,15 +1,26 @@
 @use '../../abstract/mixins.scss' as *;
 
 .forecast {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
   &__heading {
     @include small-heading;
   }
 
-  &__list {
-    list-style: none;
-  }
-
-  &__list-item {
+  &__swiper {
     width: 100%;
+    padding: 0 1rem;
   }
+}
+
+.swiper-slide {
+  margin-right: 0;
+}
+
+.swiper-container {
+  overflow: scroll;
 }

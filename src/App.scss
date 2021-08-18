@@ -6,7 +6,8 @@
   background-color: $bg-color;
   overflow-y: scroll;
   scroll-snap-type: y proximity;
-  padding: 1rem;
+  // padding: 1rem;
+  position: relative;
 }
 
 .page-scroll {
@@ -32,5 +33,26 @@
   align-items: center;
 }
 
-.analysis {
+.current-analysis {
+  // position: relative;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-evenly;
+  // align-items: center;
+}
+
+.current-video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+  filter: opacity(0.5);
+}
+
+.current-weather {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
