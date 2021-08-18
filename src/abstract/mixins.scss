@@ -44,17 +44,17 @@
 }
 
 @mixin label {
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 400;
   font-family: $roboto;
   color: $text-color;
 
   @include tablet {
-    font-size: 1.5em;
+    font-size: 2rem;
   }
 
   @include desktop {
-    font-size: 2rem;
+    font-size: 4rem;
   }
 }
 
@@ -65,7 +65,7 @@
   color: $text-color;
 
   @include tablet {
-    font-size: 1em;
+    font-size: 1rem;
   }
 
   @include desktop {
