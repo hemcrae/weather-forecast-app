@@ -7,8 +7,11 @@ import { CurrentWeather } from "./components/CurrentWeather/CurrentWeather";
 import { ForecastAnalysis } from "./components/ForecastAnalysis/ForecastAnalysis";
 import { fetchForecast, fetchWeather } from "./services/WeatherService";
 import clouds from "./assets/clouds.mp4";
+import sunny from "./assets/sunny.mp4";
+import { useMemo } from "react";
 
 export const App = () => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const container = useRef<HTMLDivElement | null>(null);
   const [cities, setCities] = useState<City[]>([]);
   const [city, setCity] = useState<City | null>(null);
@@ -37,6 +40,22 @@ export const App = () => {
     [scrollTo]
   );
 
+  const backgroundSrc = useMemo(() => {
+    console.log(weather?.weather[0].main);
+    switch (weather?.weather[0].main) {
+      case "Clouds":
+        return clouds;
+      case "Clear":
+        return sunny;
+    }
+  }, [weather]);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.load();
+    }
+  }, [backgroundSrc]);
+
   useEffect(() => {
     const localStorageCities = localStorage.getItem("cities");
     if (!localStorageCities) {
@@ -57,7 +76,6 @@ export const App = () => {
           setWeather(weather);
         }
         if (forecastData) {
-          console.log(forecastData);
           setForecast(forecastData);
         }
       }
@@ -79,9 +97,11 @@ export const App = () => {
       </div>
 
       <div className="current-analysis page-scroll">
-        <video className="current-video" loop autoPlay muted>
-          <source src={clouds} type="video/mp4" />
-        </video>
+        {backgroundSrc && (
+          <video ref={videoRef} className="current-video" loop autoPlay muted>
+            <source src={backgroundSrc} type="video/mp4" />
+          </video>
+        )}
         <div className="current-weather">
           <CurrentWeather city={city} weather={weather} />
         </div>

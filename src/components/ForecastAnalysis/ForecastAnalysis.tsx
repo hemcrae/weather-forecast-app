@@ -39,8 +39,6 @@ export const ForecastAnalysis: React.FC<ForecastProps> = ({
                 spaceBetween: 30,
               },
             }}
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={(swiper) => console.log(swiper)}
           >
             {forecast?.list.map((timePoint) => (
               <SwiperSlide key={`forecast-${timePoint.dt}`}>
