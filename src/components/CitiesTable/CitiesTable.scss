@@ -1,30 +1,20 @@
 @use '../../abstract/mixins.scss' as *;
 @use '../../abstract/variables.scss' as *;
 
-.cities__table {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-}
-
-.table {
+.cities {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
 
-  &__heading {
-    @include heading;
-    padding: 1rem 0;
-  }
+.table__body-data {
+  cursor: pointer;
+  list-style: none;
+  @include small-heading;
+  padding: 1rem 0;
 
-  &__body-data {
-    cursor: pointer;
-    @include small-heading;
-
-    &:hover {
-      color: $cta-color;
-    }
+  &:hover {
+    color: $cta-color;
   }
 }

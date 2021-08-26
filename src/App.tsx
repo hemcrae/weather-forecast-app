@@ -23,19 +23,28 @@ export const App = () => {
     (city: City) => {
       if (!cities.find((item) => item.name === city.name)) {
         setCities([city, ...cities]);
+        localStorage.setItem("cities", JSON.stringify([city, ...cities]));
       }
-      scrollTo(window.innerHeight);
     },
-    [cities, scrollTo]
+    [cities]
   );
 
   const onCitySelect = useCallback(
     (city: City) => {
       setCity(city);
-      scrollTo(window.innerHeight * 2);
+      scrollTo(window.innerHeight);
     },
     [scrollTo]
   );
+
+  useEffect(() => {
+    const localStorageCities = localStorage.getItem("cities");
+    if (!localStorageCities) {
+      return;
+    }
+    const citiesList = JSON.parse(localStorageCities);
+    setCities(citiesList);
+  }, []);
 
   useEffect(() => {
     (async function () {
@@ -58,11 +67,10 @@ export const App = () => {
   return (
     <div ref={container} className="container">
       <div className="weather page-scroll">
-        <h1 className="weather__heading">Weather Forecast</h1>
-        <CitySearch onSubmit={addCity} />
-      </div>
-
-      <div className="cities page-scroll">
+        <div className="weather__wrap">
+          <h1 className="weather__heading">Weather Forecast</h1>
+          <CitySearch onSubmit={addCity} />
+        </div>
         <CitiesTable
           cities={cities}
           current={city}
