@@ -8,6 +8,8 @@ import { ForecastAnalysis } from "./components/ForecastAnalysis/ForecastAnalysis
 import { fetchForecast, fetchWeather } from "./services/WeatherService";
 import clouds from "./assets/clouds.mp4";
 import sunny from "./assets/sunny.mp4";
+import rain from "./assets/rain.mp4";
+import snow from "./assets/snow.mp4";
 import { useMemo } from "react";
 
 export const App = () => {
@@ -47,6 +49,10 @@ export const App = () => {
         return clouds;
       case "Clear":
         return sunny;
+      case "Rain":
+        return rain;
+      case "Snow":
+        return snow;
     }
   }, [weather]);
 
