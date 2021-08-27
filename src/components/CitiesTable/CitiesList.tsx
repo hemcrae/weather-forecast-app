@@ -1,17 +1,17 @@
 import React from "react";
 import { City } from "../../model/WeatherModel";
-import "./CitiesTable.scss";
+import "./CitiesList.scss";
 import "../../utils/scroll.utils";
 import CloseIcon from "@material-ui/icons/Close";
 
-interface CitiesTableProps {
+interface CitiesListProps {
   cities: City[];
   current: City | null;
   onSelect: (city: City) => void;
   removeCity: (city: City) => void;
 }
 
-export const CitiesTable: React.FC<CitiesTableProps> = ({
+export const CitiesList: React.FC<CitiesListProps> = ({
   cities,
   current,
   onSelect,

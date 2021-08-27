@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./App.scss";
-import { CitiesTable } from "./components/CitiesTable/CitiesTable";
+import { CitiesList } from "./components/CitiesTable/CitiesList";
 import { CitySearch } from "./components/CitySearch/CitySearch";
 import { City, Forecast, Weather } from "./model/WeatherModel";
 import { CurrentWeather } from "./components/CurrentWeather/CurrentWeather";
@@ -109,7 +109,7 @@ export const App = () => {
           <h1 className="weather__heading">Weather Forecast</h1>
           <CitySearch onSubmit={addCity} />
         </div>
-        <CitiesTable
+        <CitiesList
           cities={cities}
           current={city}
           onSelect={(city) => onCitySelect(city)}
