@@ -21,6 +21,7 @@ export const CitySearch: React.FC<CitySearchProps> = ({ onSubmit }) => {
         alert(`${term} is not a valid city.`);
       } else {
         onSubmit(city);
+        setCitySearch("");
       }
     },
     [onSubmit]

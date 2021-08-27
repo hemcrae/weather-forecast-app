@@ -34,6 +34,20 @@ export const App = () => {
     [cities]
   );
 
+  const removeCity = useCallback(
+    ({ id }: City) => {
+      const filteredCities = cities.filter((value, index) => {
+        if (id === value.id) {
+          return false;
+        }
+        return true;
+      });
+      localStorage.setItem("cities", JSON.stringify(filteredCities));
+      setCities(filteredCities);
+    },
+    [cities]
+  );
+
   const onCitySelect = useCallback(
     (city: City) => {
       setCity(city);
@@ -99,6 +113,7 @@ export const App = () => {
           cities={cities}
           current={city}
           onSelect={(city) => onCitySelect(city)}
+          removeCity={removeCity}
         />
       </div>
 
