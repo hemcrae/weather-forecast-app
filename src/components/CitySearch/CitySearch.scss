@@ -2,13 +2,11 @@
 @use '../../abstract/mixins.scss' as *;
 
 .search {
-  display: inline-flex;
   position: relative;
   padding: 1rem 0;
 
   &__input {
     height: 50px;
-    width: 250px;
     border-radius: 5px;
     border: 1px solid lightgrey;
     padding: 0 1rem;

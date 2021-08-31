@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./App.scss";
-import { CitiesList } from "./components/CitiesTable/CitiesList";
+import { CitiesList } from "./components/CitiesList/CitiesList";
 import { CitySearch } from "./components/CitySearch/CitySearch";
 import { City, Forecast, Weather } from "./model/WeatherModel";
 import { CurrentWeather } from "./components/CurrentWeather/CurrentWeather";
@@ -11,6 +11,8 @@ import sunny from "./assets/sunny.mp4";
 import rain from "./assets/rain.mp4";
 import snow from "./assets/snow.mp4";
 import { useMemo } from "react";
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
 export const App = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -123,13 +125,10 @@ export const App = () => {
             <source src={backgroundSrc} type="video/mp4" />
           </video>
         )}
-        <div className="current-weather">
-          <CurrentWeather city={city} weather={weather} />
-        </div>
+        <CurrentWeather city={city} weather={weather} scrollTo={scrollTo} />
       </div>
-
       <div className="forecast-weather page-scroll">
-        <ForecastAnalysis forecast={forecast} city={city} />
+        <ForecastAnalysis forecast={forecast} city={city} scrollTo={scrollTo} />
       </div>
     </div>
   );

@@ -1,15 +1,13 @@
 @use '../../abstract/mixins.scss' as *;
+@use '../../abstract/variables.scss' as *;
 
 .current {
+  height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  margin-right: auto;
-  margin-left: auto;
   position: absolute;
-  width: 100%;
-  padding: 0 1rem;
 
   &__heading {
     @include small-heading;
@@ -17,5 +15,25 @@
 
   &__name {
     @include heading;
+  }
+
+  &__video {
+    width: 100%;
+  }
+
+  &__wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__scroll-up,
+  &__scroll-down {
+    @include button;
+    color: $heading-color;
+    width: 100vw;
+    padding: 1rem 0;
+    cursor: pointer;
   }
 }

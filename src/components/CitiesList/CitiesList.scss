@@ -1,0 +1,29 @@
+@use '../../abstract/mixins.scss' as *;
+@use '../../abstract/variables.scss' as *;
+
+.cities {
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 20px;
+  }
+
+  &__list-item {
+    cursor: pointer;
+    list-style: none;
+    @include small-heading;
+    padding: 0;
+
+    &:hover {
+      color: $cta-color;
+    }
+  }
+
+  &__list-button {
+    @include button;
+
+    &:hover {
+      color: #a30000;
+    }
+  }
+}

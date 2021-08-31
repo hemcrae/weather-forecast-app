@@ -1,19 +1,27 @@
 @use '../../abstract/mixins.scss' as *;
+@use '../../abstract/variables.scss' as *;
 
 .forecast {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
 
   &__heading {
     @include small-heading;
+    text-align: center;
   }
 
   &__swiper {
     width: 100%;
     padding: 0 1rem;
+    top: 0;
+    transform: translateY(25%);
+  }
+
+  &__scroll-top {
+    width: 100vw;
+    @include button;
+    color: $heading-color;
+    padding: 1rem 0;
+    cursor: pointer;
   }
 }
 
@@ -22,5 +30,15 @@
 }
 
 .swiper-container {
-  overflow: scroll;
+  overflow-x: scroll;
+}
+
+.swiper-wrapper {
+  padding-bottom: 30px;
+}
+
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-container-horizontal > .swiper-pagination-bullets {
+  bottom: 0px !important;
 }

@@ -2,7 +2,6 @@ import React from "react";
 import { City } from "../../model/WeatherModel";
 import "./CitiesList.scss";
 import "../../utils/scroll.utils";
-import CloseIcon from "@material-ui/icons/Close";
 
 interface CitiesListProps {
   cities: City[];
@@ -19,18 +18,23 @@ export const CitiesList: React.FC<CitiesListProps> = ({
 }) => {
   return (
     <div className="cities">
-      <ol>
+      <ol className="cities__list">
         {cities.map((city, index) => (
-          <li
-            className="table__body-data"
-            onClick={() => onSelect(city)}
-            key={index}
-          >
-            {city.name}
-            <button className="table__button">
-              <CloseIcon onClick={() => removeCity(city)} />
+          <>
+            <li
+              className="cities__list-item"
+              onClick={() => onSelect(city)}
+              key={index}
+            >
+              {city.name}
+            </li>
+            <button
+              className="cities__list-button"
+              onClick={() => removeCity(city)}
+            >
+              x
             </button>
-          </li>
+          </>
         ))}
       </ol>
     </div>
